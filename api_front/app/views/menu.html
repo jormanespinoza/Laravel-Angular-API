@@ -17,14 +17,13 @@
         <ul class="nav navbar-nav">
           <li ng-class="{ active : menu.isActive('/') }"><a href="#/">Inicio</a></li>
           <li ng-class="{ active : menu.isActive('/about') }"><a ng-href="#/about">Nosotros</a></li>
-          <!-- <li><a ng-href="#/login">Iniciar Sesión</a></li> -->
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right dropdown">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <img ng-src="{{ menu.user.avatar }}" class="profile-image img-circle">
-               {{ menu.user.name }} <b class="caret"></b>
+              {{ menu.user.name }} <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu">

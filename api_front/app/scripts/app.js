@@ -19,9 +19,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'satellizer',
-    'authService'
+    'authService',
+    'googleplus'
   ])
-  .config(function ($routeProvider, $authProvider, $locationProvider) {
+  .config(function ($routeProvider, $authProvider, $locationProvider, GooglePlusProvider) {
     $locationProvider.hashPrefix('');
     $authProvider.loginUrl = 'http://localhost:8000/authLogin';
     $routeProvider
@@ -43,6 +44,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+    GooglePlusProvider.setScopes('https://www.googleapis.com/auth/userinfo.email');
+    GooglePlusProvider.init ({
+      clientId: '929538698520-f4dran474ivnan0t96v4l36cal2f7or4.apps.googleusercontent.com',
+      apiKey: 'GxNRdoNOVhaxOLZ8ngXsY_W0'
+    });
   })
   .run(function ($rootScope, $location, authUser) {
     var privateRoutes = ['/', '/about'];

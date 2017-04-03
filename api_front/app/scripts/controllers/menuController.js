@@ -36,7 +36,7 @@ angular.module('apiFrontApp')
       if (typeof newVal !== 'undefined') {
         vm.user.email = sessionControl.get('email');
       }
-    });
+    });    
 
     vm.logout = function () {
       authUser.logout();

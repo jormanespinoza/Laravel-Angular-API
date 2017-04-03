@@ -15,7 +15,7 @@ angular.module('authService', [])
       }
     };
   })
-  .factory('authUser', function ($auth, sessionControl, $location) {
+  .factory('authUser', function ($auth, GooglePlus, sessionControl, $location) {
     var cacheSession = function (email, username, avatar) {
       sessionControl.set('userIsLogin', true);
       sessionControl.set('email', email);
@@ -33,19 +33,21 @@ angular.module('authService', [])
     var login = function (loginForm) {
       $auth.login(loginForm).then(
         function (response) {
-          cacheSession(
-            response.data.user.email,
-            response.data.user.name,
-            loginForm.avatar
-          )
+          if ((typeof response.data.user.email != 'undefined') && typeof (response.data.user.name != 'undefined')) {
+            cacheSession(response.data.user.email, response.data.user.name, loginForm.avatar)
+          }
+
           $location.path('/');
           toastr.success('Sesión iniciada con éxito.', 'Mensaje');
           // console.log(response);
         },
         function (error) {
           unCacheSession();
-          toastr.error(error.data.error, 'Error');
-          // console.log(error);
+          if (error.data.error == 'Invalid credentials') {
+            toastr.error('Usuario o contraseña incorrectos', 'Error');
+          }else {
+            toastr.error(error.data.error, 'Error');
+          }
         }
       );
     };
@@ -56,6 +58,22 @@ angular.module('authService', [])
       },
       isLoggedIn: function () {
         return sessionControl.get('userIsLogin') !== null;
+      },
+      loginGooglePlus: function () {
+        GooglePlus.login().then(
+          function () {
+            GooglePlus.getUser().then(function(response) {
+              // console.log(response);
+              var loginForm = {
+                name: response.name,
+                email: response.email,
+                avatar: response.picture
+              }
+
+              login(loginForm);
+            })
+          }
+        );
       },
       logout: function () {
         $auth.logout();

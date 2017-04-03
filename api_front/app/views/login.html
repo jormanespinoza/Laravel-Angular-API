@@ -10,11 +10,14 @@
           <input type="password" class="form-control" placeholder="Password" ng-model="login.loginForm.password">
         </div>
         <button class="btn btn-primary" ng-click="login.login()">Iniciar Sesión</button>
-        <!--
+
         <hr>
-        <a class="btn btn-block btn-social btn-faebook" ng-click="logon.loginFacebook()">Iniciar Sesión con Facebook</a>
-        <a class="btn btn-block btn-social btn-google-plus" ng-click="logon.loginGooglePlus()">Iniciar Sesión con Google</a>
-        -->
+        <a class="btn btn-block btn-social btn-facebook" ng-click="login.loginFacebook()">
+          <span class="fa fa-facebook"></span> Iniciar Sesión con Facebook
+        </a>
+        <a class="btn btn-block btn-social btn-google" ng-click="login.loginGooglePlus()">
+           <span class="fa fa-google"></span> Iniciar Sesión con Google
+         </a>
       </form>
     </div>
   </div>
