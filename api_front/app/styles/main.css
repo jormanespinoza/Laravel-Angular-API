@@ -81,3 +81,29 @@ body {
     border-bottom: 0;
   }
 }
+
+.profile-image {
+  max-height: 30px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.navbar-login-session {
+  padding: 0 10px;
+}
+
+.icon-size {
+  font-size: 87px;
+}
+
+.icon-size img {
+  width: 100px;
+  height: auto;
+  margin-top: -30px;
+}

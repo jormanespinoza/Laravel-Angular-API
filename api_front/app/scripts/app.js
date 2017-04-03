@@ -43,4 +43,14 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function ($rootScope, $location, authUser) {
+    var privateRoutes = ['/', '/about'];
+
+    $rootScope.$on('$routeChangeStart', function () {
+      if (($.inArray($location.path(), privateRoutes) !== -1) && !authUser.isLoggedIn()) {
+        toastr.error('Debe iniciar sesión para poder continuar.', 'Mensaje');
+        $location.path('/login');
+      }
+    });
   });

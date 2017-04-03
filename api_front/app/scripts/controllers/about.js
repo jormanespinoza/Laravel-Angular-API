@@ -9,9 +9,9 @@
  */
 angular.module('apiFrontApp')
   .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    var vm = this;
+
+    vm.menuTemplate = {
+      url: 'views/menu.html'
+    }
   });
