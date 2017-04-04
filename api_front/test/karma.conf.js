@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/satellizer/dist/satellizer.js',
       'bower_components/toastr/toastr.js',
       'bower_components/angular-google-plus/dist/angular-google-plus.js',
+      'bower_components/ng-facebook/ngFacebook.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

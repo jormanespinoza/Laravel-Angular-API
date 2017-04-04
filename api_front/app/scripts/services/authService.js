@@ -15,7 +15,7 @@ angular.module('authService', [])
       }
     };
   })
-  .factory('authUser', function ($auth, GooglePlus, sessionControl, $location) {
+  .factory('authUser', function ($auth, GooglePlus, sessionControl, $location, $facebook) {
     var cacheSession = function (email, username, avatar) {
       sessionControl.set('userIsLogin', true);
       sessionControl.set('email', email);
@@ -74,6 +74,24 @@ angular.module('authService', [])
             })
           }
         );
+      },
+      loginFacebook: function () {
+        $facebook.login().then(function() {
+          $facebook.api('/me').then(
+            function(response) {
+              console.log(response);
+              var loginForm = {
+                name: response.name,
+                email: response.email,
+                avatar: response.public_profile
+              }
+
+              // login(loginForm);
+            },
+            function(err) {
+              toastr.warning('Ha ocurrido un error', 'Mensaje');
+            });
+        });
       },
       logout: function () {
         $auth.logout();
