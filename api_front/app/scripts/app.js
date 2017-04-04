@@ -49,9 +49,8 @@ angular
     GooglePlusProvider.init ({
       clientId: '929538698520-f4dran474ivnan0t96v4l36cal2f7or4.apps.googleusercontent.com',
       apiKey: 'GxNRdoNOVhaxOLZ8ngXsY_W0'
-    });
+    });    
     $facebookProvider.setAppId('346679795729555');
-    $facebookProvider.setPermissions(['email', 'public_profile']);
   })
   .run(function ($rootScope, $location, authUser) {
     var privateRoutes = ['/', '/about'];

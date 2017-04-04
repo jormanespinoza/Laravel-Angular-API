@@ -63,7 +63,7 @@ angular.module('authService', [])
         GooglePlus.login().then(
           function () {
             GooglePlus.getUser().then(function(response) {
-              // console.log(response);
+              //console.log(response);
               var loginForm = {
                 name: response.name,
                 email: response.email,
@@ -77,16 +77,22 @@ angular.module('authService', [])
       },
       loginFacebook: function () {
         $facebook.login().then(function() {
-          $facebook.api('/me').then(
-            function(response) {
-              console.log(response);
+          $facebook.api('/me', {
+            fields: [
+              'name',
+              'email',
+              'picture'
+            ],
+          })
+          .then(function(response) {
+              //console.log(response);
               var loginForm = {
                 name: response.name,
                 email: response.email,
-                avatar: response.public_profile
+                avatar: response.picture.data.url
               }
 
-              // login(loginForm);
+              login(loginForm);
             },
             function(err) {
               toastr.warning('Ha ocurrido un error', 'Mensaje');
