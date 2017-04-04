@@ -22,6 +22,10 @@ angular.module('apiFrontApp')
       avatar: sessionControl.get('avatar')
     };
 
+    if (vm.user.avatar === 'undefined') {
+      vm.user.avatar = '/images/user_icon.png';
+    }
+
     $scope.$watch(function () {
       return sessionControl.get('username');
     }, function (newVal) {
@@ -36,7 +40,7 @@ angular.module('apiFrontApp')
       if (typeof newVal !== 'undefined') {
         vm.user.email = sessionControl.get('email');
       }
-    });    
+    });
 
     vm.logout = function () {
       authUser.logout();
